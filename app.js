@@ -1,54 +1,71 @@
-// let textVorodi=document.querySelector('.text-vorodi')
-// let noteClick=document.querySelector('.note-click')
-// let form=document.querySelector('#note-form')
-// let noteMatne=document.querySelector('.note-matne')
-// let noteUl=document.querySelector('.note-ul')
-// let newLi=document.createElement('li')
-// console.log(noteClick)
-// console.log(textVorodi)
+let textVorodi = document.querySelector(".title-input");
+let noteClick = document.querySelector(".add-note");
+let form = document.querySelector("#add-note");
+let noteMatne = document.querySelector(".note-matne");
+let noteUl = document.querySelector(".note-ul");
+let newLi = document.createElement("li");
 
-// textVorodi.addEventListener('input',()=>{
-//     // console.log(textVorodi.value)
-// })
-// noteClick.addEventListener('click',()=>{
-//     // console.log(textVorodi.value)
-// })
-// form.addEventListener('submit',(e)=>{
-//     e.preventDefault()
-//     console.log(textVorodi.value)
+// Selecting the 'Add New Note' button element from the HTML.
+const addnewnoteBtn = document.querySelector('.add-new');
+
+// Selecting the modal element used for adding notes.
+const addNoteModal = document.querySelector('.modal-style');
+
+// Selecting the form element used for adding new notes.
+const addnoteForm = document.querySelector('#add-note');
+
+// Selecting the wrapper element that will contain the list of notes.
+const listwrapper = document.querySelector('.list');
+
+// Adding a click event listener to the 'Add New Note' button.
+addnewnoteBtn.addEventListener('click', () => {
+    // Toggling the 'hidden' class on the modal to show/hide it.
+    addNoteModal.classList.toggle('hidden');
+});
+
+// Adding a submit event listener to the add note form.
+addnoteForm.addEventListener('submit', (e) => {
+    e.preventDefault(); // Preventing the form from submitting and refreshing the page.
+
+    // Selecting input elements for title and description from the form.
+    const titleInput = document.querySelector('.title-input');
+    const descriptionInput = document.querySelector('.description-textarea');
+
+    // Creating new HTML elements for the note display.
+    const newdiv = document.createElement('div'); // Div container for the note.
+    const headline = document.createElement('p'); // Paragraph for the note title.
+    const description = document.createElement('span'); // Span for the note description.
+    const deleteBtn = document.createElement('button'); // Button to delete the note.
     
-// })
-// form.addEventListener('submit',(e)=>{
-//     e.preventDefault()
-//     // noteMatne.innerText=`${textVorodi.value}`
-//     let newLi=document.createElement('li')
-//     newLi.innerHTML=textVorodi.value
-//     document.body.appendChild(newLi)
-//     form.reset();
-//     // noteMatne=document.createElement('a')
-//     // noteMatne.setAttribute('href','#')
-//     // noteMatne.setAttribute('innerHTML','X')
-//     // noteMatne.textContent='X'
-//     // noteMatne.appendChild(newLi)
-//     // console.log(noteMatne)
-  
-// })
-
-
-// // let span =document.createElement('span')
-// // span.innerText=textVorodi
-// // let li = document.createElement('li')
-// // li.appendChild=(span)
-// // let a=document.createElement('a')
-// // a.innerHTML='X'
-// // li.appendChild(a)
-// // console.log(li)
-
-
-// // todo search about localStorage sessionstorage
-// // creat element and append element must happend in event listener so every time you submit new element can be crated
-
-// // you need to append new element to section that you have selected not body
-
-// // search about array method like filter() and map() 
-// // try to save every all note in arry so you can loade them in start of app
+    // Setting the text content for the delete button.
+    deleteBtn.textContent = 'Delete';
+    
+    // Adding CSS class to the new note container.
+    newdiv.classList.add('note-matne');
+    
+    // Setting the text content for the note title and description.
+    hedline.innerText = titleInput.value;
+    description.innerText = descriptionInput.value;
+    
+    // Appending the title, description, and delete button to the note container.
+    newdiv.appendChild(headline);
+    newdiv.appendChild(description);
+    newdiv.appendChild(deleteBtn);
+    
+    // Appending the new note container to the list wrapper.
+    listwrapper.appendChild(newdiv);
+    
+    // Resetting the form inputs after adding the note.
+    addnoteForm.reset();
+    
+    // Hiding the modal after adding the note.
+    addNoteModal.classList.add('hidden');
+      // Adding a click event listener to the delete button within the new note.
+      deleteBtn.addEventListener('click', () => {
+        deleteNote(newdiv); // Call the deleteNote function and pass the note container to be deleted.
+    });
+});
+function deleteNote(noteElement) {
+    // Remove the note's parent container (the div containing the note) from the list wrapper.
+    listwrapper.removeChild(noteElement);
+}

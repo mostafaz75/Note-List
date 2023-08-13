@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Note</title>
-    <script defer src="app.js"></script>
+    
     <link rel="stylesheet" href="style.css" />
     <link
       rel="stylesheet"
@@ -13,6 +13,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <script defer src="app.js"></script>
   </head>
   <body>
     <!-- <h1>Note List</h1>
@@ -30,24 +31,30 @@
     <ul class="note-ul" >
         <li class="note-matne" >  </li>
     </ul> -->
-
-    <div class="new-note">
-      <h1>Add a New Note</h1>
-      <form action="">
-        <div class="title">
-          <label for="">title</label>
-          <input class="title-input" type="text" >
-        </div>
-        <div class="Description">
-          <label for="">Description</label>
-          <textarea name="" id="" cols="30" rows="10"></textarea>
-        </div>
-        <button class="add-note" type="button">Add note</button>
-      </form>
-    </div>
-    <div class="add-new">
-        <i class="fa-solid fa-plus "></i>  
-        <p>Add New Note</p>
-    </div>
+<div class="container" id="container">
+  <div class="new-note modal-style hidden">
+    <h1>Add a New Note</h1>
+    <form id="add-note" action="">
+      <div class="title">
+        <label for="">title</label>
+        <input class="title-input" type="text" >
+      </div>
+      <div class="Description">
+        <label for="">Description</label>
+        <textarea class="description-textarea" id="" cols="30" rows="10"></textarea>
+      </div>
+      <button class="add-note" type="submit">Add note</button>
+      <!-- <input class="note-click" type="submit"> -->
+    </form>
+  </div>
+  <div class="list">
+  <div class="add-new" >
+      <i class="fa-solid fa-plus "></i>  
+      <p>Add New Note</p>
+  </div>
+  <div class="overlay hidden"></div>
+  
+</div>
+   
   </body>
 </html>
